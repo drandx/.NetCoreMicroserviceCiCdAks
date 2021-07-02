@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerApi.Service", "Cust
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerApi.Messaging.Send", "CustomerApi.Messaging.Send\CustomerApi.Messaging.Send.csproj", "{28D8F42D-3805-4CE8-8560-0E53F7C7A8B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerApi.Functions.FunctionOne", "CustomerApi.Functions.FunctionOne\CustomerApi.Functions.FunctionOne.csproj", "{7551746D-435C-4322-902B-CECA5C42028B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{28D8F42D-3805-4CE8-8560-0E53F7C7A8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D8F42D-3805-4CE8-8560-0E53F7C7A8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D8F42D-3805-4CE8-8560-0E53F7C7A8B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7551746D-435C-4322-902B-CECA5C42028B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7551746D-435C-4322-902B-CECA5C42028B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7551746D-435C-4322-902B-CECA5C42028B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7551746D-435C-4322-902B-CECA5C42028B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{5E71BBC1-3504-4D04-B35A-774191661DA4} = {07375459-1664-4EC7-92FA-BD050BC4D62F}
 		{72D5EADC-6F8B-4A4D-89D1-D4CADD5E552A} = {07375459-1664-4EC7-92FA-BD050BC4D62F}
 		{28D8F42D-3805-4CE8-8560-0E53F7C7A8B3} = {07375459-1664-4EC7-92FA-BD050BC4D62F}
+		{7551746D-435C-4322-902B-CECA5C42028B} = {07375459-1664-4EC7-92FA-BD050BC4D62F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6CF9C02E-7DA3-48A7-8B84-0212F60D6852}
