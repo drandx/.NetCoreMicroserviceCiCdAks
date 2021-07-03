@@ -32,8 +32,11 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: '**/CustomerApi.csproj'
-    arguments: '--configuration $(buildConfiguration) --no-restore'
-    modifyOutputPath: false    
+    projects: '**/*.csproj'
+    #arguments: '--configuration $(buildConfiguration) --no-restore'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+    #modifyOutputPath: false
+    zipAfterPublish: true
+    modifyOutputPath: true
   displayName: 'Publish CustomerApi'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
