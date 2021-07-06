@@ -37,7 +37,7 @@ steps:
     arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
     #modifyOutputPath: false
     zipAfterPublish: false
-    modifyOutputPath: true
+    modifyOutputPath: false
   displayName: 'Publish CustomerApi'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
