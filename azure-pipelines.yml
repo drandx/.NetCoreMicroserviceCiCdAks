@@ -34,12 +34,12 @@ steps:
     publishWebProjects: false
     projects: '**/*.csproj'
     #arguments: '--configuration $(buildConfiguration) --no-restore'
-    #arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
-    arguments: '-o $(Build.ArtifactStagingDirectory)/Output/$(CustomOutputPath)'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+    #arguments: '-o $(Build.ArtifactStagingDirectory)/Output/$(CustomOutputPath)'
     #modifyOutputPath: false
     zipAfterPublish: false
-    modifyOutputPath: false
-  displayName: 'Publish Artifacts'
+    modifyOutputPath: true
+  displayName: 'Publish CustomerApi'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - task: PublishBuildArtifacts@1
