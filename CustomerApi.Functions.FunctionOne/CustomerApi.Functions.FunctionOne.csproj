@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
-    <IsPublishable>false</IsPublishable >
     <CustomOutputPath>customPath/test/out/FunctionOne</CustomOutputPath>
   </PropertyGroup>
   <ItemGroup>
