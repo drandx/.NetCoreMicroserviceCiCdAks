@@ -5,7 +5,7 @@
     <CustomOutputPath>customPath/test/out/FunctionOne</CustomOutputPath>
     <PublishMetadata>
       <ProjectType>Function</ProjectType>
-      <OutputhPath>publish_output</OutputhPath>
+      <OutputhFolder>publish_output</OutputhFolder>
       <ProjectName>FunctionOne</ProjectName>
       <ProjectPrefix>App_Data/jobs/continuous</ProjectPrefix>
     </PublishMetadata>
