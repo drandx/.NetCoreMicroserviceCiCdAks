@@ -46,7 +46,8 @@ steps:
     publishWebProjects: false
     projects: |
       CustomerApi.Functions.FunctionOne/CustomerApi.Functions.FunctionOne.csproj
-    arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+    #arguments: '-o $(Build.ArtifactStagingDirectory)/Output/$(PropertyGroup.CustomOutputPath)'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/Output/customPath/test/out/FunctionOne'
     zipAfterPublish: false
     modifyOutputPath: true
   displayName: 'DotNetCoreCLI publish FunctionOne only'
