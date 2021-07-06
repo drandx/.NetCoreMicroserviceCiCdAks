@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <MyName>FunctionOne</MyName>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
@@ -15,4 +16,5 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
+  <CustomOutputPath>customPath/test/out/FunctionOne</CustomOutputPath>
 </Project>

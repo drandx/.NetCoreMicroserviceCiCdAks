@@ -34,7 +34,8 @@ steps:
     publishWebProjects: false
     projects: '**/*.csproj'
     #arguments: '--configuration $(buildConfiguration) --no-restore'
-    arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+    #arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
+    arguments: '-o $(Build.ArtifactStagingDirectory)/Output/${{ project.CustomOutputPath }}'
     #modifyOutputPath: false
     zipAfterPublish: false
     modifyOutputPath: false
