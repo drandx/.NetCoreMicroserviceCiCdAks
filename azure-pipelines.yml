@@ -36,7 +36,7 @@ steps:
     #arguments: '--configuration $(buildConfiguration) --no-restore'
     arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
     #modifyOutputPath: false
-    zipAfterPublish: true
+    zipAfterPublish: false
     modifyOutputPath: true
   displayName: 'Publish CustomerApi'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
