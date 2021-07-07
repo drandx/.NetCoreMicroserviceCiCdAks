@@ -1,18 +1,21 @@
 parameters:  
   stageName: 'Build_Functions'
   pathPrefix: 'Functions'
+  dependsOn: []
 
 stages:
+
 - stage: ${{ parameters.stageName }}
+  dependsOn: ${{ parameters.dependsOn }}  
   jobs:
   - job: Build_Webjob
     strategy:
-        maxParallel: 2
-        matrix: 
+      maxParallel: 2
+      matrix: 
         debug:
-            BuildConfiguration: debug
+          BuildConfiguration: debug
         release:
-            BuildConfiguration: release
+          BuildConfiguration: release
 
         steps:
 
