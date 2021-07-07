@@ -19,6 +19,4 @@ stages:
 
         steps:
 
-        - task: CmdLine@2
-          inputs:
-            script: 'echo Building Functions...' 
+        - script: 'echo building functions...'
