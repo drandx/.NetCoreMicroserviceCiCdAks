@@ -19,10 +19,11 @@ stages:
 
     steps:
         - script: echo building webjobs...
-
+        
         - task: DotNetCoreCLI@2
-        inputs:
-        command: 'build'
-        projects: '**/WebJobs/**/**/*.csproj'
-        #arguments: '--no-restore'
-        displayName: 'Build projects'
+          displayName: 'dotnet build'
+          inputs:
+            command: 'build'
+            projects: '**/WebJobs/**/**/*.csproj'
+            #arguments: '--no-restore'
+            displayName: 'Build projects'
