@@ -9,7 +9,7 @@ stages:
 - stage: ${{ parameters.stageName }}
   dependsOn: ${{ parameters.dependsOn }}  
   jobs:
-  - job: Build_Webjob
+  - job: Build_Functions
     strategy:
       maxParallel: 2
       matrix: 
