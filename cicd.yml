@@ -12,7 +12,7 @@ stages:
     stageName: 'Build_Functions'
     pathPrefix: 'Functions'
 
-- templates: build-webjobs.yml
+- template: build-webjobs.yml
   parameters:
     stageName: 'Build_WebJobs'
     pathPrefix: 'WebJobs'
