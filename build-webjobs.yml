@@ -14,8 +14,8 @@ stages:
       matrix: 
         debug:
           BuildConfiguration: debug
-        release:
-          BuildConfiguration: release
+        #release:
+        #  BuildConfiguration: release
 
     steps:
         - script: echo building webjobs...
