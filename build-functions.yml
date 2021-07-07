@@ -5,17 +5,18 @@ parameters:
 
 
 stages:
+
 - stage: ${{ parameters.stageName }}
   dependsOn: ${{ parameters.dependsOn }}  
   jobs:
-  - job: Build_Functions
+  - job: Build_Webjob
     strategy:
-        maxParallel: 2
-        matrix: 
+      maxParallel: 2
+      matrix: 
         debug:
-            BuildConfiguration: debug
+          BuildConfiguration: debug
         release:
-            BuildConfiguration: release
+          BuildConfiguration: release
 
     steps:
         - script: echo building functions...
