@@ -19,4 +19,4 @@ stages:
 
         steps:
 
-        - script: 'echo building functions...'
+        - script: echo building functions...
