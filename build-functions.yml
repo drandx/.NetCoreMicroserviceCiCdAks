@@ -17,6 +17,5 @@ stages:
         release:
           BuildConfiguration: release
 
-        steps:
-
-            - script: echo building functions...
+    steps:
+        - script: echo building functions...
