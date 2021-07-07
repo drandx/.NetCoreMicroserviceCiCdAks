@@ -1,0 +1,18 @@
+name: $(Date:yyyyMMdd).$(Rev:rr)
+
+trigger:
+- master
+
+pool:
+  vmImage: "vs2017-win2016"
+
+stages:
+- template: build-functions.yml
+  parameters:
+    stageName: 'Build_Functions'
+    pathPrefix: 'Functions'
+
+#- templates: build-webjobs.yml
+#  parameters:
+#    stageName: 'Build_WebJobs'
+#    pathPrefix: 'WebJobs'

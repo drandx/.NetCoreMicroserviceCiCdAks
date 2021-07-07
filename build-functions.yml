@@ -1,82 +1,21 @@
-trigger:
-- master
+parameters:  
+  stageName: 'Build_Functions'
+  pathPrefix: 'Functions'
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+- stage: ${{ parameters.stageName }}
+  jobs:
+  - job: Build_Webjob
+    strategy:
+        maxParallel: 2
+        matrix: 
+        debug:
+            BuildConfiguration: debug
+        release:
+            BuildConfiguration: release
 
-variables:
-  buildConfiguration: 'Release'
+        steps:
 
-steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-  displayName: 'Restore Nuget Packages'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--no-restore'
-  displayName: 'Build projects'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '**/*Test.csproj'
-    arguments: '--no-restore'
-  displayName: 'Run Tests'
-
-# Publishes all the artifacts into the same folder ($(Build.ArtifactStagingDirectory)/Output) separating them by project name folders
-#- task: DotNetCoreCLI@2
-#  inputs:
-#    command: 'publish'
-#    publishWebProjects: false
-#    projects: '**/*.csproj'
-#    arguments: '-o $(Build.ArtifactStagingDirectory)/Output'
-#    zipAfterPublish: false
-#    modifyOutputPath: true
-#  displayName: 'DotNetCoreCLI publish all'
-#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-
-
-# 
-# Publish projects with custom settings
-#
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-         $xml = [Xml] (Get-Content .\CustomerApi.Functions.FunctionOne\CustomerApi.Functions.FunctionOne.csproj)
-         $ProjectType = $xml.Project.PropertyGroup.PublishMetadata.ProjectType
-         $OutputhFolder = $xml.Project.PropertyGroup.PublishMetadata.OutputhFolder
-         $ProjectName = $xml.Project.PropertyGroup.PublishMetadata.ProjectName
-         $ProjectPrefix = $xml.Project.PropertyGroup.PublishMetadata.ProjectPrefix
-         echo $ProjectName
-         echo "##vso[task.setvariable variable=ProjectType]$ProjectType"
-         echo "##vso[task.setvariable variable=OutputhFolder]$OutputhFolder"
-         echo "##vso[task.setvariable variable=ProjectPrefix]$ProjectPrefix"
-         echo "##vso[task.setvariable variable=ProjectName]$ProjectName"
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    projects: |
-      CustomerApi.Functions.FunctionOne/CustomerApi.Functions.FunctionOne.csproj
-    arguments: '-o $(Build.ArtifactStagingDirectory)/$(ProjectType)/$(ProjectName)/$(OutputhFolder)/$(ProjectPrefix)'
-    zipAfterPublish: false
-    modifyOutputPath: true
-  displayName: 'DotNetCoreCLI publish FunctionOne only'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-# 
-#
-
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifacts
-  inputs:
-    PathtoPublish: $(Build.ArtifactStagingDirectory)
-    ArtifactName: $(Build.BuildNumber)
-    ArtifactType: Container
+        - task: CmdLine@2
+          inputs:
+            script: 'echo Building Functions...' 

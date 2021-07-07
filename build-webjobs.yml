@@ -1,0 +1,24 @@
+parameters:  
+  stageName: 'Build_WebJobs'
+  pathPrefix: 'Webjobs'
+
+stages:
+- stage: ${{ parameters.stageName }}
+  jobs:
+  - job: Build_Webjob
+    strategy:
+        maxParallel: 2
+        matrix: 
+        debug:
+            BuildConfiguration: debug
+        release:
+            BuildConfiguration: release
+
+        steps:
+
+        - task: DotNetCoreCLI@2
+          inputs:
+            command: 'build'
+            projects: '**/WebJobs/**/**/*.csproj'
+            #arguments: '--no-restore'
+          displayName: 'Build projects'

@@ -29,6 +29,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerApi.Functions.Funct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerApi.WebJobs.WebJobOne", "WebJobs\Continuous\CustomerApi.WebJobs.WebJobOne\CustomerApi.WebJobs.WebJobOne.csproj", "{E6DC3740-1B46-47EF-AF1E-42C1A84778A5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{2B6DF94A-F4B7-45EA-AF74-BA3F0997C16D}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		build-functions.yml = build-functions.yml
+		build-webjobs.yml = build-webjobs.yml
+		cicd.yml = cicd.yml
+		dotnetcoreCIPipeline.yml = dotnetcoreCIPipeline.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
