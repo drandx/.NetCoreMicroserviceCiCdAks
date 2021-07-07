@@ -1,9 +1,11 @@
 parameters:  
   stageName: 'Build_WebJobs'
   pathPrefix: 'Webjobs'
+  dependsOn: []
 
 stages:
 - stage: ${{ parameters.stageName }}
+  dependsOn: ${{ parameters.dependsOn }}  
   jobs:
   - job: Build_Webjob
     strategy:
@@ -11,14 +13,15 @@ stages:
         matrix: 
         debug:
             BuildConfiguration: debug
-        release:
-            BuildConfiguration: release
+        #release:
+        #    BuildConfiguration: release
 
-        steps:
+    steps:
+        - script: echo building webjobs...
 
-        - task: DotNetCoreCLI@2
-          inputs:
-            command: 'build'
-            projects: '**/WebJobs/**/**/*.csproj'
-            #arguments: '--no-restore'
-          displayName: 'Build projects'
+        #- task: DotNetCoreCLI@2
+        #inputs:
+        #command: 'build'
+        #projects: '**/WebJobs/**/**/*.csproj'
+        ##arguments: '--no-restore'
+        #displayName: 'Build projects'
