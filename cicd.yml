@@ -8,19 +8,19 @@ pool:
 
 stages:
 
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet build'
-#  inputs:
-#   command: 'build'
-#   projects: '**/*.csproj'
-#   #arguments: '--no-restore'
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+   command: 'build'
+   projects: '**/*.csproj'
+   #arguments: '--no-restore'
 
-#- task: DotNetCoreCLI@2
-#  displayName: 'Run Tests'
-#  inputs:
-#   command: 'test'
-#   projects: '**/*Test.csproj'
-#   arguments: '--no-restore'
+- task: DotNetCoreCLI@2
+  displayName: 'Run Tests'
+  inputs:
+   command: 'test'
+   projects: '**/*Test.csproj'
+   arguments: '--no-restore'
 
 - template: build-functions.yml
   parameters:
