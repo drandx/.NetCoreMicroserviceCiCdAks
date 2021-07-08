@@ -61,6 +61,6 @@ stages:
         - task: PublishBuildArtifacts@1
           displayName: Publish Artifacts
           inputs:
-            PathtoPublish: $(Build.ArtifactStagingDirectory)/OutPut
+            PathtoPublish: $(Build.ArtifactStagingDirectory)/WebJobs
             ArtifactName: $(Build.BuildNumber)
             ArtifactType: Container
