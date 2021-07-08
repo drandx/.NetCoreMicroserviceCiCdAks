@@ -41,6 +41,16 @@ stages:
                  New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous -ItemType Directory -Force
                  Move-Item -Path .\Continous\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous\ -Force }
 
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
+            script: |
+                $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
+                foreach ($folder in $folders) {
+                $folderName = $folder.Name
+                Compress-Archive -Path .\$folderName\* -DestinationPath .\$folderName.zip}
+
         #- task: DotNetCoreCLI@2
         #  displayName: 'DotNetCoreCLI publish Trigger'
         #  inputs:
