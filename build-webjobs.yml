@@ -40,7 +40,7 @@ stages:
             command: 'publish'
             publishWebProjects: false
             projects: '**/WebJobs/Continuous/**/*.csproj'
-            arguments: '-o $(Build.ArtifactStagingDirectory)/Output/WebJobs'
+            arguments: '-o $(Build.ArtifactStagingDirectory)/Output/WebJobs/App_Data/jobs/continuous'
             zipAfterPublish: false
             modifyOutputPath: true
 
