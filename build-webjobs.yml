@@ -26,4 +26,10 @@ stages:
             command: 'build'
             projects: '**/WebJobs/**/**/*.csproj'
             #arguments: '--no-restore'
-            displayName: 'Build projects'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'Run Tests'
+          inputs:
+            command: 'test'
+            projects: '**/WebJobs/*Test.csproj'
+            arguments: '--no-restore'
