@@ -21,20 +21,6 @@ stages:
         - script: echo building webjobs...
         
         - task: DotNetCoreCLI@2
-          displayName: 'dotnet build'
-          inputs:
-            command: 'build'
-            projects: '**/WebJobs/**/**/*.csproj'
-            #arguments: '--no-restore'
-
-        - task: DotNetCoreCLI@2
-          displayName: 'Run Tests'
-          inputs:
-            command: 'test'
-            projects: '**/WebJobs/*Test.csproj'
-            arguments: '--no-restore'
-
-        - task: DotNetCoreCLI@2
           displayName: 'DotNetCoreCLI publish Continuous'
           inputs:
             command: 'publish'
@@ -52,7 +38,7 @@ stages:
                  $folders = Get-ChildItem -Path .\Continous -dir -ErrorAction SilentlyContinue | Select-Object Name
                  foreach ($folder in $folders) {
                  $folderName = $folder.Name
-                 New-Item -Path ..\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous -ItemType Directory -Force
+                 New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous -ItemType Directory -Force
                  Move-Item -Path .\Continous\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous\ -Force }
 
         - task: DotNetCoreCLI@2
@@ -73,7 +59,7 @@ stages:
                  $folders = Get-ChildItem -Path .\Trigger -dir -ErrorAction SilentlyContinue | Select-Object Name
                  foreach ($folder in $folders) {
                  $folderName = $folder.Name
-                 New-Item -Path ..\WebJobs\publishing_output\$folderName\App_Data\jobs\trigger -ItemType Directory -Force
+                 New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\trigger -ItemType Directory -Force
                  Move-Item -Path .\Trigger\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\trigger\ -Force }
 
         - task: PublishBuildArtifacts@1
