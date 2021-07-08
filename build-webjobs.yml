@@ -35,9 +35,9 @@ stages:
             arguments: '--no-restore'
 
         - task: DotNetCoreCLI@2
-          displayName: 'DotNetCoreCLI publish all'
+          displayName: 'DotNetCoreCLI publish Continuous'
           inputs:
-            command: 'publish Continuos Webjob'
+            command: 'publish'
             publishWebProjects: false
             projects: '**/WebJobs/Continuous/**/*.csproj'
             arguments: '-o $(Build.ArtifactStagingDirectory)/Continous'
@@ -56,7 +56,7 @@ stages:
                  Move-Item -Path .\$folderName -Destination ..\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous\ -Force }
 
         - task: DotNetCoreCLI@2
-          displayName: 'publish Trigger Webjobs'
+          displayName: 'DotNetCoreCLI publish Trigger'
           inputs:
             command: 'publish'
             publishWebProjects: false
