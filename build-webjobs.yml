@@ -33,3 +33,20 @@ stages:
             command: 'test'
             projects: '**/WebJobs/*Test.csproj'
             arguments: '--no-restore'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'DotNetCoreCLI publish all'
+          inputs:
+            command: 'publish'
+            publishWebProjects: false
+            projects: '**/WebJobs/Continuous/**/*.csproj'
+            arguments: '-o $(Build.ArtifactStagingDirectory)/Output/WebJobs'
+            zipAfterPublish: false
+            modifyOutputPath: true
+
+        - task: PublishBuildArtifacts@1
+          displayName: Publish Artifacts
+          inputs:
+            PathtoPublish: $(Build.ArtifactStagingDirectory)/OutPut
+            ArtifactName: $(Build.BuildNumber)
+            ArtifactType: Container
