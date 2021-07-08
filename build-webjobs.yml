@@ -55,8 +55,8 @@ stages:
                  $folders = Get-ChildItem -dir | Select-Object Name
                  foreach ($folderName in $folders) {
                  $finalName = $folderName.Name
-                 New-Item -Path .\WebJobs\Continuous\$finalName\App_Data\jobs\continuous -ItemType Directory -Force
-                 Move-Item -Path .\$finalName -Destination .\WebJobs\Continuous\$finalName\App_Data\jobs\continuous\ -Force }
+                 New-Item -Path .\WebJobs\publishing_output\$finalName\App_Data\jobs\continuous -ItemType Directory -Force
+                 Move-Item -Path .\$finalName -Destination .\WebJobs\publishing_output\$finalName\App_Data\jobs\continuous\ -Force }
 
         - task: PublishBuildArtifacts@1
           displayName: Publish Artifacts
