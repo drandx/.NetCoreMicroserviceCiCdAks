@@ -40,9 +40,23 @@ stages:
             command: 'publish'
             publishWebProjects: false
             projects: '**/WebJobs/Continuous/**/*.csproj'
-            arguments: '-o $(Build.ArtifactStagingDirectory)/Output/WebJobs/publish_output/App_Data/jobs/continuous'
+            # The goal is this: Output/WebJobs/{PROJECT_NAME}/App_Data/jobs/continuous/{PROJECT_NAME}
+            arguments: '-o $(Build.ArtifactStagingDirectory)/WebJobs'
             zipAfterPublish: false
             modifyOutputPath: true
+
+        - script: dir
+
+        - task: PowerShell@2
+          inputs:
+            targetType: 'inline'
+            workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs
+            script: |
+                 $folders = Get-ChildItem -dir | Select-Object Name
+                 foreach ($folderName in $folders) {
+                 $finalName = $folderName.Name
+                 New-Item -Path .\output\$finalName\App_Data\jobs\continuous -ItemType Directory -Force
+                 Move-Item -Path .\$finalName -Destination .\output\$finalName\App_Data\jobs\continuous\ -Force }
 
         - task: PublishBuildArtifacts@1
           displayName: Publish Artifacts
