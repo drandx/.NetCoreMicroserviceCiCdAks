@@ -31,6 +31,7 @@ stages:
             modifyOutputPath: true
 
         - task: PowerShell@2
+          displayName: 'Create folder structure for Continuous'
           inputs:
             targetType: 'inline'
             workingDirectory: $(Build.ArtifactStagingDirectory)
@@ -42,6 +43,7 @@ stages:
                  Move-Item -Path .\Continous\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous\ -Force }
 
         - task: PowerShell@2
+          displayName: 'Archive all WebJobs'
           inputs:
             targetType: 'inline'
             workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
