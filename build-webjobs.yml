@@ -47,9 +47,9 @@ stages:
         - task: PowerShell@2
           displayName: 'Archive all WebJobs'
           inputs:
-           argetType: 'inline'
-           workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
-           script: |
+            targetType: 'inline'
+            workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
+            script: |
                 $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
                 foreach ($folder in $folders) {
                 $folderName = $folder.Name
