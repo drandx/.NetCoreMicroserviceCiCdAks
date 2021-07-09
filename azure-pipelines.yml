@@ -34,7 +34,7 @@ steps:
     publishWebProjects: false
     projects: '**/CustomerApi.csproj'
     #arguments: '--configuration $(buildConfiguration) --no-restore'
-    arguments: '-o $(Build.ArtifactStagingDirectory)'
+    arguments: '-o $(Build.ArtifactStagingDirectory) --no-restore'
     zipAfterPublish: true
     modifyOutputPath: true    
   displayName: 'Publish CustomerApi'
