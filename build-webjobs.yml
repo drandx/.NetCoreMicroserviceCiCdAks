@@ -2,7 +2,7 @@ parameters:
   stageName: 'Build_WebJobs'
   pathPrefix: 'Webjobs'
   dependsOn: []
-  webjobTypes: []
+  webjobTypes: ['Continuous','Triggered']
 
 stages:
 
@@ -41,14 +41,14 @@ stages:
                      $folders = Get-ChildItem -Path .\${{ webjobType }} -dir -ErrorAction SilentlyContinue | Select-Object Name
                      foreach ($folder in $folders) {
                      $folderName = $folder.Name
-                     New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\${{ webjobType }} -ItemType Directory -Force
-                     Move-Item -Path .\${{ webjobType }}\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\${{ webjobType }}\ -Force }
+                     New-Item -Path .\WebJobs\$folderName\App_Data\jobs\${{ webjobType }} -ItemType Directory -Force
+                     Move-Item -Path .\${{ webjobType }}\$folderName -Destination .\WebJobs\$folderName\App_Data\jobs\${{ webjobType }}\ -Force }
 
         - task: PowerShell@2
           displayName: 'Archive all WebJobs'
           inputs:
             targetType: 'inline'
-            workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
+            workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs
             script: |
                 $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
                 foreach ($folder in $folders) {
