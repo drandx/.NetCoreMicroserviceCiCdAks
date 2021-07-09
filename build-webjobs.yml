@@ -48,9 +48,9 @@ stages:
           displayName: 'Archive all WebJobs'
           inputs:
            argetType: 'inline'
-           orkingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
+           orkingDirectory: $(Build.ArtifactStagingDirectory)
            script: |
-                $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
+                $folders = Get-ChildItem -Path .\WebJobs\publishing_output -dir -ErrorAction SilentlyContinue | Select-Object Name
                 foreach ($folder in $folders) {
                 $folderName = $folder.Name
                 Compress-Archive -Path .\$folderName\* -DestinationPath .\$folderName.zip}
