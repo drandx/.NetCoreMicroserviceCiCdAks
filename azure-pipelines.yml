@@ -10,10 +10,10 @@ variables:
 stages:
 # Should we do the testing before?
 
-- template: build-webapps.yml
-  parameters:
-    stageName: 'Build_WebApps'
-    pathPrefix: 'WebApps'
+#- template: build-webapps.yml
+#  parameters:
+#    stageName: 'Build_WebApps'
+#    pathPrefix: 'WebApps'
 
 - template: build-webjobs.yml
   parameters:
@@ -22,7 +22,7 @@ stages:
     webjobTypes: 
     - Continuous
 
-- template: build-functions.yml
-  parameters:
-    stageName: 'Build_Functions'
-    pathPrefix: 'Functions'
+#- template: build-functions.yml
+#  parameters:
+#    stageName: 'Build_Functions'
+#    pathPrefix: 'Functions'

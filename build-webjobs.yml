@@ -44,16 +44,16 @@ stages:
                      New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\${{ webjobType }} -ItemType Directory -Force
                      Move-Item -Path .\${{ webjobType }}\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\${{ webjobType }}\ -Force }
 
-        - task: PowerShell@2
-          displayName: 'Archive all WebJobs'
-          inputs:
-            argetType: 'inline'
-            orkingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
-            script: |
-                $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
-                foreach ($folder in $folders) {
-                $folderName = $folder.Name
-                Compress-Archive -Path .\$folderName\* -DestinationPath .\$folderName.zip}
+        #- task: PowerShell@2
+        #  displayName: 'Archive all WebJobs'
+        #  inputs:
+        #    argetType: 'inline'
+        #    orkingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
+        #    script: |
+        #        $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
+        #        foreach ($folder in $folders) {
+        #        $folderName = $folder.Name
+        #        Compress-Archive -Path .\$folderName\* -DestinationPath .\$folderName.zip}
 
         - task: PublishBuildArtifacts@1
           displayName: Publish Artifacts
