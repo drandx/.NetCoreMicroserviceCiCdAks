@@ -48,7 +48,6 @@ stages:
         zipAfterPublish: true
         modifyOutputPath: true    
       displayName: 'Publish CustomerApi'
-      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
     - task: PublishBuildArtifacts@1
       displayName: Publish Artifacts
