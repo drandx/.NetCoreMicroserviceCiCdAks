@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace CustomerApi.Functions.FunctionTwo
 {
-    public static class Function1
+    public static class FunctionTwo
     {
-        [FunctionName("Function1")]
+        [FunctionName("FunctionTwo")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)

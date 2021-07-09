@@ -2,47 +2,19 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "vs2017-win2016"
 
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-  displayName: 'Restore Nuget Packages'
+stages:
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--no-restore'
-  displayName: 'Build projects'
+- template: build-webapps.yml
+  parameters:
+    stageName: 'Build_WebApps'
+    pathPrefix: 'WebApps'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '**/*Test.csproj'
-    arguments: '--no-restore'
-  displayName: 'Run Tests'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: false
-    projects: '**/CustomerApi.csproj'
-    #arguments: '--configuration $(buildConfiguration) --no-restore'
-    arguments: '-o $(Build.ArtifactStagingDirectory) --no-restore'
-    zipAfterPublish: true
-    modifyOutputPath: true    
-  displayName: 'Publish CustomerApi'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-
-- task: PublishBuildArtifacts@1
-  displayName: Publish Artifacts
-  inputs:
-    pathtoPublish: $(Build.ArtifactStagingDirectory)
-    artifactName: $(Build.BuildNumber)
-    publishLocation: Container
+- template: build-webjobs.yml
+  parameters:
+    stageName: 'Build_WebJobs'
+    pathPrefix: 'WebJobs'

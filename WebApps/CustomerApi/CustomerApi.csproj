@@ -26,9 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerApi.Data\CustomerApi.Data.csproj" />
-    <ProjectReference Include="..\CustomerApi.Domain\CustomerApi.Domain.csproj" />
-    <ProjectReference Include="..\CustomerApi.Service\CustomerApi.Service.csproj" />
+    <ProjectReference Include="..\..\CustomerApi.Data\CustomerApi.Data.csproj" />
+    <ProjectReference Include="..\..\CustomerApi.Domain\CustomerApi.Domain.csproj" />
+    <ProjectReference Include="..\..\CustomerApi.Service\CustomerApi.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

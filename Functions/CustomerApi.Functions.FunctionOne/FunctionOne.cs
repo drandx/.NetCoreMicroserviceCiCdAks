@@ -11,9 +11,9 @@ using CustomerApi.Data.Entities;
 
 namespace CustomerApi.Functions.FunctionOne
 {
-    public static class Function1
+    public static class FunctionOne
     {
-        [FunctionName("Function1")]
+        [FunctionName("FunctionOne")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)

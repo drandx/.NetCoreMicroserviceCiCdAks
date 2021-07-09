@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CustomerApi\CustomerApi.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="AutoMapper">
       <HintPath>..\..\..\..\.nuget\packages\automapper\9.0.0\lib\netstandard2.0\AutoMapper.dll</HintPath>
     </Reference>

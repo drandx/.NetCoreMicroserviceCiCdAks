@@ -1,6 +1,6 @@
 parameters:  
-  stageName: 'Build_Functions'
-  pathPrefix: 'Functions'
+  stageName: 'Build_WebApps'
+  pathPrefix: 'WebApps'
   dependsOn: []
 
 stages:
@@ -8,7 +8,7 @@ stages:
 - stage: ${{ parameters.stageName }}
   dependsOn: ${{ parameters.dependsOn }}  
   jobs:
-  - job: Build_Function
+  - job: Build_WebApp
     strategy:
       maxParallel: 2
       matrix: 
@@ -21,13 +21,13 @@ stages:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'restore'
-        projects: '**/Functions/**/*.csproj'
+        projects: '**/WebApps/**/*.csproj'
       displayName: 'Restore Nuget Packages'
 
     #- task: DotNetCoreCLI@2
     #  inputs:
     #    command: 'build'
-    #    projects: '**/Functions/**/*.csproj'
+    #    projects: '**/WebApps/**/*.csproj'
     #    arguments: '--no-restore'
     #  displayName: 'Build projects'
 
@@ -42,12 +42,12 @@ stages:
       inputs:
         command: 'publish'
         publishWebProjects: false
-        projects: '**/Functions/**/*.csproj'
+        projects: '**/WebApps/**/*.csproj'
         #arguments: '--configuration $(buildConfiguration) --no-restore'
-        arguments: '-o $(Build.ArtifactStagingDirectory)/Functions --no-restore'
+        arguments: '-o $(Build.ArtifactStagingDirectory)/WebApps --no-restore'
         zipAfterPublish: true
         modifyOutputPath: true    
-      displayName: 'Publish Functions'
+      displayName: 'Publish CustomerApi'
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
     - task: PublishBuildArtifacts@1
