@@ -2,6 +2,7 @@ parameters:
   stageName: 'Build_Functions'
   pathPrefix: 'Functions'
   dependsOn: []
+  webjobTypes: []
 
 stages:
 

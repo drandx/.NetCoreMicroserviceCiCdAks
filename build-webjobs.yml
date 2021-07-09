@@ -2,6 +2,7 @@ parameters:
   stageName: 'Build_WebJobs'
   pathPrefix: 'Webjobs'
   dependsOn: []
+  webjobTypes: []
 
 stages:
 
@@ -20,59 +21,39 @@ stages:
     steps:
         - script: echo building webjobs...
         
-        - task: DotNetCoreCLI@2
-          displayName: 'DotNetCoreCLI publish Continuous'
-          inputs:
-            command: 'publish'
-            publishWebProjects: false
-            projects: '**/WebJobs/Continuous/**/*.csproj'
-            arguments: '-o $(Build.ArtifactStagingDirectory)/Continous'
-            zipAfterPublish: false
-            modifyOutputPath: true
+        - ${{ each webjobType in parameters.webjobTypes }}:
+            - task: DotNetCoreCLI@2
+              displayName: 'DotNetCoreCLI publish ${{ webjobType }}'
+              inputs:
+                command: 'publish'
+                publishWebProjects: false
+                projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
+                arguments: '-o $(Build.ArtifactStagingDirectory)/${{ webjobType }}'
+                zipAfterPublish: false
+                modifyOutputPath: true
 
-        - task: PowerShell@2
-          displayName: 'Create folder structure for Continuous'
-          inputs:
-            targetType: 'inline'
-            workingDirectory: $(Build.ArtifactStagingDirectory)
-            script: |
-                 $folders = Get-ChildItem -Path .\Continous -dir -ErrorAction SilentlyContinue | Select-Object Name
-                 foreach ($folder in $folders) {
-                 $folderName = $folder.Name
-                 New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous -ItemType Directory -Force
-                 Move-Item -Path .\Continous\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\continuous\ -Force }
+            - task: PowerShell@2
+              displayName: 'Create folder structure for ${{ webjobType }}'
+              inputs:
+                targetType: 'inline'
+                workingDirectory: $(Build.ArtifactStagingDirectory)
+                script: |
+                     $folders = Get-ChildItem -Path .\${{ webjobType }} -dir -ErrorAction SilentlyContinue | Select-Object Name
+                     foreach ($folder in $folders) {
+                     $folderName = $folder.Name
+                     New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\${{ webjobType }} -ItemType Directory -Force
+                     Move-Item -Path .\${{ webjobType }}\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\${{ webjobType }}\ -Force }
 
         - task: PowerShell@2
           displayName: 'Archive all WebJobs'
           inputs:
-            targetType: 'inline'
-            workingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
+            argetType: 'inline'
+            orkingDirectory: $(Build.ArtifactStagingDirectory)/WebJobs/publishing_output
             script: |
                 $folders = Get-ChildItem -dir -ErrorAction SilentlyContinue | Select-Object Name
                 foreach ($folder in $folders) {
                 $folderName = $folder.Name
                 Compress-Archive -Path .\$folderName\* -DestinationPath .\$folderName.zip}
-
-        #- task: DotNetCoreCLI@2
-        #  displayName: 'DotNetCoreCLI publish Trigger'
-        #  inputs:
-        #    command: 'publish'
-        #    publishWebProjects: false
-        #    projects: '**/WebJobs/Trigger/**/*.csproj'
-        #    arguments: '-o $(Build.ArtifactStagingDirectory)/Trigger'
-        #    zipAfterPublish: false
-        #    modifyOutputPath: true
-        
-        #- task: PowerShell@2
-        #  inputs:
-        #    targetType: 'inline'
-        #    workingDirectory: $(Build.ArtifactStagingDirectory)
-        #    script: |
-        #         $folders = Get-ChildItem -Path .\Trigger -dir -ErrorAction SilentlyContinue | Select-Object Name
-        #         foreach ($folder in $folders) {
-        #         $folderName = $folder.Name
-        #         New-Item -Path .\WebJobs\publishing_output\$folderName\App_Data\jobs\trigger -ItemType Directory -Force
-        #         Move-Item -Path .\Trigger\$folderName -Destination .\WebJobs\publishing_output\$folderName\App_Data\jobs\trigger\ -Force }
 
         - task: PublishBuildArtifacts@1
           displayName: Publish Artifacts

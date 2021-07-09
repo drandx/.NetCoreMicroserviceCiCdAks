@@ -8,6 +8,7 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
+# Should we do the testing before?
 
 - template: build-webapps.yml
   parameters:
@@ -18,6 +19,8 @@ stages:
   parameters:
     stageName: 'Build_WebJobs'
     pathPrefix: 'WebJobs'
+    webjobTypes: 
+    - Continuous
 
 - template: build-functions.yml
   parameters:
