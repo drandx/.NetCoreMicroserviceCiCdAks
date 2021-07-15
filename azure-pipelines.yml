@@ -28,7 +28,8 @@ stages:
     pathPrefix: 'Functions'
 
 - stage: TMP_Stage
-  dependsOn: []
+  dependsOn: 
+  - Build_WebJobs
   jobs:
   - job: TMP_Job
     strategy:
