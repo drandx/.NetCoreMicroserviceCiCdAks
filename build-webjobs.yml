@@ -22,25 +22,25 @@ stages:
         - script: echo building webjobs...
         
         - ${{ each webjobType in parameters.webjobTypes }}:
-            - task: DotNetCoreCLI@2
-              inputs:
-                command: 'restore'
-                projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
-              displayName: 'Restore Nuget Packages'
+            #- task: DotNetCoreCLI@2
+            #  inputs:
+            #    command: 'restore'
+            #    projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
+            #  displayName: 'Restore Nuget Packages'
 
-            - task: DotNetCoreCLI@2
-              inputs:
-                command: 'build'
-                projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
-                arguments: '--no-restore'
-              displayName: 'Build projects'
+            #- task: DotNetCoreCLI@2
+            #  inputs:
+            #    command: 'build'
+            #    projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
+            #    arguments: '--no-restore'
+            #  displayName: 'Build projects'
 
-            - task: DotNetCoreCLI@2
-              inputs:
-                command: 'test'
-                projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
-                arguments: '--no-restore'
-              displayName: 'Run Tests'
+            #- task: DotNetCoreCLI@2
+            #  inputs:
+            #    command: 'test'
+            #    projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
+            #    arguments: '--no-restore'
+            #  displayName: 'Run Tests'
 
             - task: DotNetCoreCLI@2
               displayName: 'DotNetCoreCLI publish ${{ webjobType }}'
@@ -48,7 +48,7 @@ stages:
                 command: 'publish'
                 publishWebProjects: false
                 projects: '**/WebJobs/${{ webjobType }}/**/*.csproj'
-                arguments: '-o $(Build.ArtifactStagingDirectory)/${{ webjobType }} --no-restore'
+                arguments: '-o $(Build.ArtifactStagingDirectory)/${{ webjobType }}'
                 zipAfterPublish: false
                 modifyOutputPath: true
 

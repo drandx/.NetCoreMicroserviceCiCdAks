@@ -44,6 +44,6 @@ stages:
       displayName: 'Print Artifacts'
       inputs:
         targetType: 'inline'
-        workingDirectory: $(Pipeline.Workspace)/$(Build.BuildNumber)/Webjobs
+        workingDirectory: $(Pipeline.Workspace)/$(Build.BuildNumber)/WebJobs
         script: |
             dir
