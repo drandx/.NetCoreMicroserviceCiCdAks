@@ -26,3 +26,23 @@ stages:
   parameters:
     stageName: 'Build_Functions'
     pathPrefix: 'Functions'
+
+- stage: TMP_Stage
+  dependsOn: []
+  jobs:
+  - job: TMP_Job
+    strategy:
+      maxParallel: 2
+      matrix: 
+        debug:
+          BuildConfiguration: debug
+    
+    steps:
+
+    - task: PowerShell@2
+      displayName: 'Print Artifacts'
+      inputs:
+        targetType: 'inline'
+        workingDirectory: $(Pipeline.Workspace)/$(Build.BuildNumber)/Webjobs
+        script: |
+            dir
