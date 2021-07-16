@@ -47,3 +47,6 @@ stages:
         workingDirectory: $(Build.ArtifactStagingDirectory)
         script: |
             dir
+
+    - script: dir
+      filePath: $(Build.ArtifactStagingDirectory)
