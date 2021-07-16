@@ -48,5 +48,7 @@ stages:
         script: |
             dir
 
-    - script: dir
-      filePath: $(Build.ArtifactStagingDirectory)
+    - task: CmdLine@2
+      inputs:
+        script: 'dir'
+        workingDirectory: $(Build.ArtifactStagingDirectory)
