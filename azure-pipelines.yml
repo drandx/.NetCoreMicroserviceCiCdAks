@@ -40,6 +40,8 @@ stages:
     
     steps:
     - task: DownloadPipelineArtifact@2
+      inputs:
+        source: 'current'
 
     - task: PowerShell@2
       displayName: 'Print Artifacts'
