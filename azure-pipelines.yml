@@ -44,6 +44,6 @@ stages:
       displayName: 'Print Artifacts'
       inputs:
         targetType: 'inline'
-        workingDirectory: $(Pipeline.Workspace)
+        workingDirectory: $(Build.ArtifactStagingDirectory)
         script: |
             dir
