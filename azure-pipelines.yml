@@ -39,6 +39,7 @@ stages:
           BuildConfiguration: debug
     
     steps:
+    - task: DownloadPipelineArtifact@2
 
     - task: PowerShell@2
       displayName: 'Print Artifacts'
