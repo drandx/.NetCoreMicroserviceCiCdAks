@@ -8,7 +8,6 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-# Should we do the testing before?
 
 #- template: build-webapps.yml
 #  parameters:
@@ -27,7 +26,7 @@ stages:
 #    stageName: 'Build_Functions'
 #    pathPrefix: 'Functions'
 
-- stage: TMP_Stage
+- stage: Consume_Artifacts
   dependsOn: 
   - Build_WebJobs
   jobs:
@@ -42,19 +41,6 @@ stages:
     - task: DownloadPipelineArtifact@2
       inputs:
         source: 'current'
-
-    - task: PowerShell@2
-      displayName: 'Print Artifacts'
-      inputs:
-        targetType: 'inline'
-        workingDirectory: $(Build.ArtifactStagingDirectory)
-        script: |
-            dir
-
-    - task: CmdLine@2
-      inputs:
-        script: 'dir'
-        workingDirectory: $(Build.ArtifactStagingDirectory)
 
     - task: CmdLine@2
       inputs:
