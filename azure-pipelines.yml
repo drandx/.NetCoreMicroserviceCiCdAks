@@ -59,4 +59,4 @@ stages:
     - task: CmdLine@2
       inputs:
         script: 'dir'
-        workingDirectory:  $(Pipeline.Workspace)
+        workingDirectory:  $(Pipeline.Workspace)/$(Build.BuildNumber)
