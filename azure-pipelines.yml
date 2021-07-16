@@ -53,3 +53,8 @@ stages:
       inputs:
         script: 'dir'
         workingDirectory: $(Build.ArtifactStagingDirectory)
+
+    - task: CmdLine@2
+      inputs:
+        script: 'dir'
+        workingDirectory:  $(Pipeline.Workspace)
