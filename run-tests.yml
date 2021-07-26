@@ -16,6 +16,6 @@ stages:
       inputs:
         command: 'test'
         projects: |
-            'Test/*Test.csproj'
+            '**/*Test.csproj'
         #arguments: '--no-restore'
       displayName: 'Run Tests'
