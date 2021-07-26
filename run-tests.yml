@@ -30,7 +30,7 @@ stages:
         command: 'test'
         projects: | 
           Tests/**/*Test.csproj
-          !Tests/CustomerApi.Test
-          !Tests/CustomerApi.Service.Test
+          !Tests/CustomerApi.Test/*Test.csproj
+          !Tests/CustomerApi.Service.Test/*Test.csproj
         arguments: '--no-restore'
       displayName: 'Run Tests'
