@@ -11,6 +11,7 @@ using FakeItEasy;
 using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Xunit;
 
 namespace CustomerApi.Test.Controllers.v1
@@ -115,6 +116,12 @@ namespace CustomerApi.Test.Controllers.v1
             (result.Result as StatusCodeResult)?.StatusCode.Should().Be((int)HttpStatusCode.OK);
             result.Value.Should().BeOfType<List<Customer>>();
             result.Value[0]?.Id.Should().Be(_id);
+        }
+
+        [Fact]
+        public void TestMethod1()
+        {
+            Xunit.Assert.Equal(true, false);
         }
     }
 }

@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Items", "Items", "{2B6DF94A
 		build-webapps.yml = build-webapps.yml
 		build-webjobs.yml = build-webjobs.yml
 		dotnetcoreCIPipeline.yml = dotnetcoreCIPipeline.yml
+		run-tests.yml = run-tests.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerApi.WebJobs.WebJobTwo", "WebJobs\Continuous\CustomerApi.WebJobs.WebJobTwo\CustomerApi.WebJobs.WebJobTwo.csproj", "{20BF6474-5700-4DEF-B76F-C672553DAFDA}"
