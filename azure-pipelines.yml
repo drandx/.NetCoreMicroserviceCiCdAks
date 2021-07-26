@@ -12,40 +12,40 @@ stages:
   parameters:
     stageName: 'Run_Tests'
 
-- template: build-webapps.yml
-  parameters:
-    stageName: 'Build_WebApps'
-    pathPrefix: 'WebApps'
+#- template: build-webapps.yml
+#  parameters:
+#    stageName: 'Build_WebApps'
+#    pathPrefix: 'WebApps'
 
-- template: build-webjobs.yml
-  parameters:
-    stageName: 'Build_WebJobs'
-    pathPrefix: 'WebJobs'
-    webjobTypes: 
-    - Continuous
+#- template: build-webjobs.yml
+#  parameters:
+#    stageName: 'Build_WebJobs'
+#    pathPrefix: 'WebJobs'
+#    webjobTypes: 
+#    - Continuous
 
 #- template: build-functions.yml
 #  parameters:
 #    stageName: 'Build_Functions'
 #    pathPrefix: 'Functions'
 
-- stage: Consume_Artifacts
-  dependsOn: 
-  - Build_WebJobs
-  jobs:
-  - job: TMP_Job
-    strategy:
-      maxParallel: 2
-      matrix: 
-        debug:
-          BuildConfiguration: debug
+#- stage: Consume_Artifacts
+#  dependsOn: 
+#  - Build_WebJobs
+#  jobs:
+#  - job: TMP_Job
+#    strategy:
+#      maxParallel: 2
+#      matrix: 
+#        debug:
+#          BuildConfiguration: debug
     
-    steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        source: 'current'
+#    steps:
+#    - task: DownloadPipelineArtifact@2
+#      inputs:
+#        source: 'current'
 
-    - task: CmdLine@2
-      inputs:
-        script: 'dir'
-        workingDirectory:  $(Pipeline.Workspace)/$(Build.BuildNumber)/WebJobs
+#    - task: CmdLine@2
+#      inputs:
+#        script: 'dir'
+#        workingDirectory:  $(Pipeline.Workspace)/$(Build.BuildNumber)/WebJobs
