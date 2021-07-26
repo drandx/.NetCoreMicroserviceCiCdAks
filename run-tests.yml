@@ -12,22 +12,22 @@ stages:
 
     steps:
 
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'restore'
-        projects: 'Tests/**/*Test.csproj'
-      displayName: 'Restore Nuget Packages'
+    #- task: DotNetCoreCLI@2
+    #  inputs:
+    #    command: 'restore'
+    #    projects: 'Tests/**/*Test.csproj'
+    #  displayName: 'Restore Nuget Packages'
 
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'build'
-        projects: 'Tests/**/*Test.csproj'
-        arguments: '--no-restore'
-      displayName: 'Build projects'
+    #- task: DotNetCoreCLI@2
+    #  inputs:
+    #    command: 'build'
+    #    projects: 'Tests/**/*Test.csproj'
+    #    arguments: '--no-restore'
+    #  displayName: 'Build projects'
 
     - task: DotNetCoreCLI@2
       inputs:
         command: 'test'
         projects: Tests/**/*Test.csproj
-        arguments: '--no-restore'
+        #arguments: '--no-restore'
       displayName: 'Run Tests'
