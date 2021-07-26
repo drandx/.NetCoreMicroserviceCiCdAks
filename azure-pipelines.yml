@@ -9,10 +9,10 @@ variables:
 
 stages:
 
-#- template: build-webapps.yml
-#  parameters:
-#    stageName: 'Build_WebApps'
-#    pathPrefix: 'WebApps'
+- template: build-webapps.yml
+  parameters:
+    stageName: 'Build_WebApps'
+    pathPrefix: 'WebApps'
 
 - template: build-webjobs.yml
   parameters:
