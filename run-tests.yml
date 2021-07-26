@@ -15,13 +15,13 @@ stages:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'restore'
-        projects: 'Test/**/*Test.csproj'
+        projects: 'Tests/**/*Test.csproj'
       displayName: 'Restore Nuget Packages'
 
     - task: DotNetCoreCLI@2
       inputs:
         command: 'build'
-        projects: 'Test/**/*Test.csproj'
+        projects: 'Tests/**/*Test.csproj'
         arguments: '--no-restore'
       displayName: 'Build projects'
 
