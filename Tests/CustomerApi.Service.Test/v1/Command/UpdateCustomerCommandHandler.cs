@@ -42,5 +42,11 @@ namespace CustomerApi.Service.Test.v1.Command
 
             A.CallTo(() => _repository.UpdateAsync(A<Customer>._)).MustHaveHappenedOnceExactly();
         }
+
+        [Fact]
+        public void TestMethod1()
+        {
+            Xunit.Assert.Equal(true, false);
+        }
     }
 }
