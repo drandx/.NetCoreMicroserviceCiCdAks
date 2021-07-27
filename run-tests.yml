@@ -28,6 +28,9 @@ stages:
     - task: DotNetCoreCLI@2
       inputs:
         command: 'test'
-        projects: Tests/**/*Test.csproj
+        projects: |
+         Tests/**/*Test.csproj
+         !Tests/CustomerApi.Service.test/**
+         !Tests/CustomerApi.test/**
         #arguments: '--no-restore'
       displayName: 'Run Tests'
