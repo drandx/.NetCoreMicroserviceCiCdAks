@@ -12,9 +12,9 @@ stages:
   parameters:
     stageName: 'Run_Tests'
     excludeProjects: |
-    Tests/**/*Test.csproj
-    !Tests/CustomerApi.test/**
-    !Tests/CustomerApi.Service.test/**'
+     Tests/**/*Test.csproj
+     !Tests/CustomerApi.test/**
+     !Tests/CustomerApi.Service.test/**'
 
 #- template: build-webapps.yml
 #  parameters:
