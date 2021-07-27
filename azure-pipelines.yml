@@ -11,7 +11,7 @@ stages:
 - template: run-tests.yml
   parameters:
     stageName: 'Run_Tests'
-    excludeProjects: !Tests/CustomerApi.test/**
+    excludeProjects: !Tests/CustomerApi.test/**; !Tests/CustomerApi.Service.test/**
 
 #- template: build-webapps.yml
 #  parameters:
