@@ -31,6 +31,6 @@ stages:
         projects: |
          Tests/**/*Test.csproj
          #!Tests/CustomerApi.Service.test/**
-         !Tests/CustomerApi.test/**
+         ${{ parameters.excludeProjects }}
         #arguments: '--no-restore'
       displayName: 'Run Tests'
