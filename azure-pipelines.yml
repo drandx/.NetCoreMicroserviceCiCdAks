@@ -12,7 +12,6 @@ stages:
   parameters:
     stageName: 'Run_Tests'
     excludeProjects: |
-     Tests/**/*Test.csproj
      !Tests/CustomerApi.test/**
      !Tests/CustomerApi.Service.test/**
 
