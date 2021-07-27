@@ -14,7 +14,7 @@ stages:
     excludeProjects: |
      Tests/**/*Test.csproj
      !Tests/CustomerApi.test/**
-     !Tests/CustomerApi.Service.test/**'
+     !Tests/CustomerApi.Service.test/**
 
 #- template: build-webapps.yml
 #  parameters:
