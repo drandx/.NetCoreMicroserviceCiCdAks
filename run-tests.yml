@@ -28,11 +28,11 @@ stages:
     #  displayName: 'Build projects'
 
     - task: DotNetCoreCLI@2
+      displayName: 'Run Tests'
       inputs:
         command: 'test'
         projects: |
          **/*Test.csproj
          #!Tests/CustomerApi.Service.test/**
          ${{ parameters.excludeProjects }}
-        #arguments: '--no-restore'
-      displayName: 'Run Tests'
+        arguments: '--no-restore'
