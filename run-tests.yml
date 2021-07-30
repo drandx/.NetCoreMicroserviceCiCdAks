@@ -13,10 +13,12 @@ stages:
     steps:
 
     - task: DotNetCoreCLI@2
+      displayName: 'Restore'
       inputs:
         command: 'restore'
-        projects: '**/*.csproj'
-      displayName: 'Restore Nuget Packages'
+        projects: |
+         **/*.csproj
+         ${{ parameters.excludeProjects }}
 
     #- task: DotNetCoreCLI@2
     #  inputs:
