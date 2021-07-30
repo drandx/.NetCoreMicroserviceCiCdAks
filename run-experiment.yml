@@ -1,0 +1,30 @@
+parameters:  
+  stageName: 'Run_Experiment'
+  dependsOn: []
+  projects: ''
+  solutions: ''
+
+stages:
+
+- stage: ${{ parameters.stageName }}
+  dependsOn: ${{ parameters.dependsOn }}  
+  jobs:
+  - job: Run_Experiment
+
+    steps:
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore'
+      inputs:
+        command: 'restore'
+        projects: |
+         ${{ parameter.projects }}
+         ${{ parameter.solutions }}
+         ${{ parameters.excludeProjects }}
+
+    #- task: DotNetCoreCLI@2
+    #  inputs:
+    #    command: 'build'
+    #    projects: 'Tests/**/*Test.csproj'
+    #    arguments: '--no-restore'
+    #  displayName: 'Build projects'

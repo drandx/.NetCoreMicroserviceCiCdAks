@@ -8,7 +8,7 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-- template: run-experiments.yml
+- template: run-experiment.yml
   parameters:
     stageName: 'Run_Experiment'
     solutions: |
