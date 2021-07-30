@@ -8,13 +8,19 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-- template: run-tests.yml
+- template: run-experiments.yml
   parameters:
-    stageName: 'Run_Tests'
-    excludeProjects: |
-     !Tests/CustomerApi.test/**
-     !Tests/CustomerApi.Service.test/**
-     #!FailingProj/**
+    stageName: 'Run_Experiment'
+    solutions: |
+      CustomerApi.sln
+
+#- template: run-tests.yml
+#  parameters:
+#    stageName: 'Run_Tests'
+#    excludeProjects: |
+#     !Tests/CustomerApi.test/**
+#     !Tests/CustomerApi.Service.test/**
+#     #!FailingProj/**
 
 #- template: build-webapps.yml
 #  parameters:
