@@ -18,8 +18,8 @@ stages:
       inputs:
         command: 'restore'
         projects: |
-         ${{ parameter.projects }}
-         ${{ parameter.solutions }}
+         ${{ parameters.projects }}
+         ${{ parameters.solutions }}
          ${{ parameters.excludeProjects }}
 
     #- task: DotNetCoreCLI@2
