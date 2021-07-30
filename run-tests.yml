@@ -12,11 +12,11 @@ stages:
 
     steps:
 
-    #- task: DotNetCoreCLI@2
-    #  inputs:
-    #    command: 'restore'
-    #    projects: 'Tests/**/*Test.csproj'
-    #  displayName: 'Restore Nuget Packages'
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'restore'
+        projects: '**/*.csproj'
+      displayName: 'Restore Nuget Packages'
 
     #- task: DotNetCoreCLI@2
     #  inputs:
